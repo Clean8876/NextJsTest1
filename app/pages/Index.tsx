@@ -41,28 +41,35 @@ function Display() {
     }
   }, [data, error]);
   return (
-    <div className="max-w-xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Search by Country Code</h1>
+<div className="max-w-xl mx-auto p-6">
+  <h1 className="text-3xl font-bold mb-6 text-center tracking-tight text-neutral-800">
+    Search by Country Code
+  </h1>
 
-      <SearchForm
-        searchTerm={searchTerm}
-        loading={loading}
-        onSearchChange={setSearchTerm}
-        onSearchSubmit={handleSearch}
-      />
+  <SearchForm
+    searchTerm={searchTerm}
+    loading={loading}
+    onSearchChange={setSearchTerm}
+    onSearchSubmit={handleSearch}
+  />
 
-       {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
-      {countryFound && (
-        <div className="mt-6 border p-4 rounded shadow">
-          <h2 className="text-xl font-semibold mb-2">
-            {countryFound.emoji} {countryFound.name}
-          </h2>
-          <p>Code: {countryFound.code}</p>
-          <p>Currency: {countryFound.currency || 'N/A'}</p>
-          <p>Continent: {countryFound.continent.name}</p>
-        </div>
-      )}
+  {errorMessage && (
+    <div className="text-red-500 mt-4 text-center">{errorMessage}</div>
+  )}
+
+  {countryFound && (
+    <div className="mt-8 bg-white border border-neutral-200 rounded-2xl shadow-xl p-6">
+      <h2 className="text-2xl font-semibold mb-4 text-neutral-900 flex items-center gap-2">
+        <span className="text-3xl">{countryFound.emoji}</span> {countryFound.name}
+      </h2>
+      <div className="space-y-2 text-neutral-700">
+        <p><span className="font-medium text-neutral-800">Code:</span> {countryFound.code}</p>
+        <p><span className="font-medium text-neutral-800">Currency:</span> {countryFound.currency || 'N/A'}</p>
+        <p><span className="font-medium text-neutral-800">Continent:</span> {countryFound.continent.name}</p>
+      </div>
     </div>
+  )}
+</div>
   )
 }
 
